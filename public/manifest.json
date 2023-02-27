@@ -1,0 +1,31 @@
+{
+	"manifest_version": 3,
+	"name": "Youtube Bookmark",
+	"description": "Youtube Bookmark Extension",
+	"version": "0.3.0",
+	"host_permissions": ["*://*.youtube.com/*"],
+	"action": { "default_popup": "index.html" },
+	"icons": {
+		"16": "logo_256.png",
+		"48": "logo_256.png",
+		"128": "logo_256.png"
+	},
+	"permissions": ["storage"],
+	"content_scripts": [
+		{
+			"matches": ["*://youtube.com/*", "*://www.youtube.com/*", "*://m.youtube.com/*"],
+			"exclude_matches": ["*://*.music.youtube.com/*"],
+			"js": ["scripts/content.js"],
+			"run_at": "document_end"
+		}
+	],
+	"externally_connectable": {
+		"matches": ["*://*.youtube.com/watch*"]
+	},
+	"web_accessible_resources": [
+		{
+			"resources": ["scripts/ytb.script.js"],
+			"matches": ["*://*.youtube.com/*"]
+		}
+	]
+}
